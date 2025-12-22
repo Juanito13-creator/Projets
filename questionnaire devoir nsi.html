@@ -1,0 +1,122 @@
+<!doctype html>
+<HTML>
+<HEAD>
+<TITLE>questionnaire</TITLE>
+</HEAD>
+<style>
+  body{
+    background-image: url(rapanui.jpg);
+    background-size: cover;
+    background-position: center;
+  }.tableau{
+    border: 3px solid black;
+    background-color:aliceblue;
+    border-radius: 10px;
+    width: 60%;
+    padding: 100px;
+    height: 400px;
+    margin-top: -120px;
+  }
+</style>
+<BODY>
+<center>
+<div>
+<h1>Questionnaire de localisation urbaine</h1>
+<h2>Informations sur l'habitat</h2>
+</div>
+<form id="formulaire" style="background-color: antiquewhite;" class="tableau">
+  <legend>Sélectionner votre milieu de vie urbain:</legend>
+
+  <div>
+  <table>
+    <tr>
+    <td><input type="radio" id="mixe" name="milieu" value="mixe" checked /></td>
+    <td><label for="mixe">mixe</label></td>
+  </div>
+    <td><img width="200" height="150" src="mixe.jpg" id="mixe"></td>
+
+  <div>
+    <td><input type="radio" id="compacte" name="milieu" value="compacte" /></td>
+    <td><label for="compacte">compacte</label></td>
+  </div>
+    <td><img width="200" height="150" src="compacte.jpg" id="compacte"></td>
+    <div>
+      <td><input type="radio" id="étalé" name="milieu" value="étalé" /></td>
+      <td><label for="étalé">étalé</label></td>
+    </div>
+      <td><img width="200" height="150" src="étalé.jpg" id="étalé"></td>
+  </tr>
+  </table>
+  <legend>Indiquez votre de lieux de vie urbain:</legend>
+  <select name="niveau" id="choix_niveau">
+   <option value="">--Veuillez choisir un type de lieux--</option>
+   <option value="centre ville">centre ville</option>
+   <option value="banlieue">banlieue</option>
+   <option value="périphérie">périphérie</option>
+  </select>
+
+  <legend>Dans quoi habitez vous ?</legend>
+  <select id="menu">
+   <option>rue</option>
+   <option>allée</option>
+   <option>avenue</option> 
+  </select>
+   <br>      
+   <img width="200" height="150" src="rue.jpg" id="img_rue">
+    <section>
+    <p>
+    <button id="valider" type="submit">Valider les informations</button>
+  </p>
+ </section>
+<span id="information"></span>
+</form>
+</center>
+</BODY>
+</HTML>
+<script>
+formulaire=document.getElementById("formulaire");
+info=document.getElementById("information");
+
+mixe=document.getElementById("mixe");
+étalé=document.getElementById("étalé");
+compacte=document.getElementById("compacte");
+
+niveau=document.getElementById("choix_niveau");
+function validation(ev) {
+	console.log("validation");
+	ev.preventDefault();
+	info.innerHTML="bdlm";
+	console.log("étalé=",étalé.checked);
+	console.log("compacte=",compacte.checked);
+  console.log("mixe=",mixe.checked);
+	
+	console.log("niveau=",niveau.value);
+	
+	if (compacte.checked==true || étalé.checked==true || mixe.checked==true) {
+		info.innerHTML="Merci d'avoi répondu !";
+		info.style.color="white";
+		info.style.backgroundColor="green";
+    alert('votre dossier a bien ete valide');
+	}
+  
+}
+
+formulaire.addEventListener("submit",validation);
+
+menu_choix=document.getElementById("menu");
+img_rue=document.getElementById("img_rue");
+    function choix_raa (ev) {
+        console.log("choix=",menu_choix.value);
+        if (menu_choix.value=="rue") {
+         img_rue.src="rue.jpg";
+        }
+        if (menu_choix.value=="allée") {
+               img_rue.src="allée.jpg";
+        }
+        if (menu_choix.value=="avenue") {
+            img_rue.src="avenue.jpg";
+        }
+    }
+     menu_choix.addEventListener("change",choix_raa);    
+
+</script>
